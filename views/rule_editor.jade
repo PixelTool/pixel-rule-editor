@@ -1,0 +1,61 @@
+//Created on 7/16/15.
+
+extends layout
+
+block links
+	if loggedin
+		script(src='/js/main.js')
+	else
+		script(src='/js/login.js')
+
+block content
+	if loggedin
+		h1.text-center=title
+		.container
+			.col-md-6.left
+				h2.text-center Edit
+				.form-group.row
+					label.col-md-12.control-label(for='select-rule') Choose Rule:
+						.row
+							.col-md-10
+								select.form-control#select-rule
+							.col-md-2
+								button#btn-new.btn.btn-primary New
+				.form-group.row
+					label.col-md-12.control-label(for='selected-rule-title') Selected Rule Title(Rename):
+						.row
+							.col-md-10
+								input#selected-rule-title.form-control(type='text')
+				.form-group.row
+					label.col-md-12.control-label(for='selected-rule-detail') Selected Rule Detail:
+						.row
+							.col-md-12
+								textarea#selected-rule-detail.form-control(rows='26')
+				.form-group.row
+					button#btn-validate.btn.btn-info.col-md-offset-2.col-md-2 Validate
+					button#btn-delete.btn.btn-danger.col-md-offset-1.col-md-2 Delete
+					button#btn-save.btn.btn-primary.col-md-offset-1.col-md-2 Save
+
+			.col-md-6.right
+				h2.text-center Test
+				.form-group.row
+					label.col-md-12.control-label(for='test-url') Enter Test Url:
+						.row
+							.col-md-10
+								input#test-url.form-control(type='text', placeholder='Enter test url')
+							.col-md-2
+								button#btn-test-url.btn.btn-primary Test
+				.form-group.row
+					label.col-md-12.control-label(for='test-result') Test Result:
+						.row
+							.col-md-12
+								textarea#test-result.form-control(rows='30')
+	else
+		.container
+			form.form-login
+				h2.form-login-heading Please login
+				label.sr-only(for='input-username') Username
+				input#input-username.form-control(type='text', placeholder='username', required='' autofocus='')
+				label.sr-only(for='input-password') Username
+				input#input-password.form-control(type='password', placeholder='password')
+				button.btn.btn-lg.btn-primary.btn-block(type='submit') Login
